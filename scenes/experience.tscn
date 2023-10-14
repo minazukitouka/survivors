@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0iw0gyl17q34"]
+
+[ext_resource type="Texture2D" uid="uid://ckckw550o0uyx" path="res://vendor/kyrise/gem_01a.png" id="1_nyavt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_50sy7"]
+
+[node name="Experience" type="Area2D"]
+z_index = -10
+collision_layer = 4
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_50sy7")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_nyavt")

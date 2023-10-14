@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://kr6auw6copwu"]
+
+[ext_resource type="PackedScene" uid="uid://boxon6hjxxq7w" path="res://scenes/weapon.tscn" id="1_uw15w"]
+[ext_resource type="PackedScene" uid="uid://ve5u5twxjs3s" path="res://scenes/slash.tscn" id="2_m4et2"]
+
+[node name="MeleeWeapon" instance=ExtResource("1_uw15w")]
+bullet_scene = ExtResource("2_m4et2")

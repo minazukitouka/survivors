@@ -1,0 +1,115 @@
+[gd_scene load_steps=21 format=3 uid="uid://b4ckdjvy4fqek"]
+
+[ext_resource type="Script" path="res://scenes/hero.gd" id="1_u7un3"]
+[ext_resource type="Texture2D" uid="uid://cobga84tat06r" path="res://vendor/rvros/adventurer-idle-2-00.png" id="1_u28ss"]
+[ext_resource type="Texture2D" uid="uid://xh2mod3prl2v" path="res://vendor/rvros/adventurer-idle-2-01.png" id="2_l41cn"]
+[ext_resource type="Texture2D" uid="uid://b1gta3h5iagxd" path="res://vendor/rvros/adventurer-idle-2-02.png" id="3_2dhfe"]
+[ext_resource type="Texture2D" uid="uid://17phsw5ga65m" path="res://vendor/rvros/adventurer-idle-2-03.png" id="4_hmrgd"]
+[ext_resource type="Texture2D" uid="uid://cgp1hna04ve85" path="res://vendor/rvros/adventurer-run-00.png" id="5_5bupe"]
+[ext_resource type="Texture2D" uid="uid://bsmi5uv7yu1h" path="res://vendor/rvros/adventurer-run-01.png" id="6_6vhae"]
+[ext_resource type="Texture2D" uid="uid://d4m0x8x8p7p5l" path="res://vendor/rvros/adventurer-run-02.png" id="7_1086b"]
+[ext_resource type="Texture2D" uid="uid://d3ucrd1aagl67" path="res://vendor/rvros/adventurer-run-03.png" id="8_qei28"]
+[ext_resource type="Texture2D" uid="uid://dq121xytalatd" path="res://vendor/rvros/adventurer-run-04.png" id="9_sgme7"]
+[ext_resource type="Texture2D" uid="uid://d0jagosf00mvx" path="res://vendor/rvros/adventurer-run-05.png" id="10_nxo44"]
+[ext_resource type="PackedScene" uid="uid://dngyi0fh8qwcr" path="res://scenes/attack.tscn" id="12_kckal"]
+[ext_resource type="PackedScene" uid="uid://kr6auw6copwu" path="res://scenes/melee_weapon.tscn" id="13_tb4s3"]
+[ext_resource type="Script" path="res://scenes/pick_area.gd" id="14_pxrfg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2gsfk"]
+
+[sub_resource type="Animation" id="Animation_31uc2"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_u28ss"), ExtResource("2_l41cn"), ExtResource("3_2dhfe"), ExtResource("4_hmrgd")]
+}
+
+[sub_resource type="Animation" id="Animation_v8fwr"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_5bupe"), ExtResource("6_6vhae"), ExtResource("7_1086b"), ExtResource("8_qei28"), ExtResource("9_sgme7"), ExtResource("10_nxo44")]
+}
+
+[sub_resource type="Animation" id="Animation_cltyp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_u28ss")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h1116"]
+_data = {
+"RESET": SubResource("Animation_cltyp"),
+"idle": SubResource("Animation_31uc2"),
+"run": SubResource("Animation_v8fwr")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1u0y3"]
+radius = 30.0
+
+[node name="Hero" type="Area2D" groups=["heroes"]]
+collision_mask = 2
+script = ExtResource("1_u7un3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2gsfk")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(1, -11)
+texture = ExtResource("1_u28ss")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_h1116")
+}
+
+[node name="Attack" parent="." instance=ExtResource("12_kckal")]
+
+[node name="MeleeWeapon" parent="Attack" instance=ExtResource("13_tb4s3")]
+
+[node name="PickArea" type="Area2D" parent="." node_paths=PackedStringArray("hero")]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("14_pxrfg")
+hero = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickArea"]
+shape = SubResource("CircleShape2D_1u0y3")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -53.0
+offset_top = -45.0
+offset_right = 53.0
+offset_bottom = -33.0
+value = 100.0
+show_percentage = false

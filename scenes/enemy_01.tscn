@@ -1,0 +1,65 @@
+[gd_scene load_steps=13 format=3 uid="uid://cby6xk3x22laa"]
+
+[ext_resource type="PackedScene" uid="uid://c2at3wjghup20" path="res://scenes/enemy.tscn" id="1_iim23"]
+[ext_resource type="Texture2D" uid="uid://df0mebl6xf0aw" path="res://vendor/szadiart/Enemy01/fly01.png" id="2_ra3yd"]
+[ext_resource type="Texture2D" uid="uid://duc2xfptl4dij" path="res://vendor/szadiart/Enemy01/fly02.png" id="3_3l7lk"]
+[ext_resource type="Texture2D" uid="uid://cdqcnbqxvfnbv" path="res://vendor/szadiart/Enemy01/fly03.png" id="4_165uc"]
+[ext_resource type="Texture2D" uid="uid://bmjtp1a4yk7wd" path="res://vendor/szadiart/Enemy01/fly04.png" id="5_b83gh"]
+[ext_resource type="Texture2D" uid="uid://dfrqc0ugxbkxs" path="res://vendor/szadiart/Enemy01/fly05.png" id="6_yuo33"]
+[ext_resource type="Texture2D" uid="uid://chjqb5eikexkh" path="res://vendor/szadiart/Enemy01/fly06.png" id="7_ts0gn"]
+[ext_resource type="Texture2D" uid="uid://dr62kx43lqgie" path="res://vendor/szadiart/Enemy01/fly07.png" id="8_b2q43"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cm03l"]
+
+[sub_resource type="Animation" id="Animation_k5kjw"]
+resource_name = "run"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_ra3yd"), ExtResource("3_3l7lk"), ExtResource("4_165uc"), ExtResource("5_b83gh"), ExtResource("6_yuo33"), ExtResource("7_ts0gn"), ExtResource("8_b2q43")]
+}
+
+[sub_resource type="Animation" id="Animation_endws"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_ra3yd")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sfqci"]
+_data = {
+"RESET": SubResource("Animation_endws"),
+"run": SubResource("Animation_k5kjw")
+}
+
+[node name="Enemy01" instance=ExtResource("1_iim23")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_cm03l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+autoplay = "run"
+libraries = {
+"": SubResource("AnimationLibrary_sfqci")
+}
+
+[node name="Sprite" type="Sprite2D" parent="Pivot" index="0"]
+position = Vector2(0, -16)
+texture = ExtResource("2_ra3yd")

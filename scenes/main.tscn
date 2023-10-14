@@ -1,0 +1,85 @@
+[gd_scene load_steps=13 format=3 uid="uid://c2wechjw41pqj"]
+
+[ext_resource type="Script" path="res://scenes/spawner.gd" id="2_xs2nv"]
+[ext_resource type="PackedScene" uid="uid://cby6xk3x22laa" path="res://scenes/enemy_01.tscn" id="3_2fbkj"]
+[ext_resource type="PackedScene" uid="uid://ct1dyoltoq1pf" path="res://scenes/enemy_02.tscn" id="4_j60cm"]
+[ext_resource type="PackedScene" uid="uid://bn41sbe7isgyp" path="res://scenes/enemy_03.tscn" id="5_orta0"]
+[ext_resource type="PackedScene" uid="uid://dv0uk8cn2adpa" path="res://scenes/enemy_04.tscn" id="6_adkh8"]
+[ext_resource type="PackedScene" uid="uid://b4ckdjvy4fqek" path="res://scenes/hero.tscn" id="6_plmna"]
+[ext_resource type="Script" path="res://scenes/input_handler.gd" id="7_4x21u"]
+[ext_resource type="PackedScene" uid="uid://drh0vcaqfs2bp" path="res://scenes/enemy_05.tscn" id="7_ny5vv"]
+[ext_resource type="Script" path="res://scenes/experience_label.gd" id="9_tggsa"]
+[ext_resource type="Script" path="res://scenes/level_label.gd" id="10_203yq"]
+[ext_resource type="Script" path="res://scenes/level_up_menu.gd" id="11_w5vlx"]
+
+[sub_resource type="Curve2D" id="Curve2D_7hp5g"]
+
+[node name="Main" type="Node2D" groups=["units"]]
+y_sort_enabled = true
+
+[node name="Hero" parent="." instance=ExtResource("6_plmna")]
+
+[node name="Camera2D" type="Camera2D" parent="Hero"]
+
+[node name="Spawner" type="Path2D" parent="Hero/Camera2D" node_paths=PackedStringArray("node_to_spawn")]
+curve = SubResource("Curve2D_7hp5g")
+script = ExtResource("2_xs2nv")
+enemy_scenes = Array[PackedScene]([ExtResource("3_2fbkj"), ExtResource("4_j60cm"), ExtResource("5_orta0"), ExtResource("6_adkh8"), ExtResource("7_ny5vv")])
+node_to_spawn = NodePath("../../..")
+
+[node name="SpawnPosition" type="PathFollow2D" parent="Hero/Camera2D/Spawner"]
+position = Vector2(-159, -174)
+rotation = 0.040628
+
+[node name="Timer" type="Timer" parent="Hero/Camera2D/Spawner"]
+wait_time = 3.0
+autostart = true
+
+[node name="InputHandler" type="Node" parent="Hero" node_paths=PackedStringArray("hero")]
+script = ExtResource("7_4x21u")
+hero = NodePath("..")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+offset_right = 123.0
+offset_bottom = 26.0
+
+[node name="LevelLabel" type="Label" parent="UI/HBoxContainer"]
+layout_mode = 2
+text = "Level: 1"
+script = ExtResource("10_203yq")
+
+[node name="ExperienceLabel" type="Label" parent="UI/HBoxContainer"]
+layout_mode = 2
+text = "Exp: 0/3"
+script = ExtResource("9_tggsa")
+
+[node name="LevelUpMenu" type="CenterContainer" parent="UI"]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_w5vlx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/LevelUpMenu"]
+layout_mode = 2
+
+[node name="LevelOption1" type="Button" parent="UI/LevelUpMenu/VBoxContainer"]
+layout_mode = 2
+text = "Option 1"
+
+[node name="LevelOption2" type="Button" parent="UI/LevelUpMenu/VBoxContainer"]
+layout_mode = 2
+text = "Option 2"
+
+[node name="LevelOption3" type="Button" parent="UI/LevelUpMenu/VBoxContainer"]
+layout_mode = 2
+text = "Option 3"
+
+[node name="LevelOption4" type="Button" parent="UI/LevelUpMenu/VBoxContainer"]
+layout_mode = 2
+text = "Option 4"
