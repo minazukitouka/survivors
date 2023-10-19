@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3 uid="uid://be4xbw1l1rmgw"]
+
+[ext_resource type="Script" path="res://scenes/weapon_data.gd" id="1_w8y6p"]
+
+[resource]
+script = ExtResource("1_w8y6p")
+name = "Life up"
+descriptions = Array[String](["Increases max life by 20"])

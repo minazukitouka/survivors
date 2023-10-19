@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c2wechjw41pqj"]
+[gd_scene load_steps=19 format=3 uid="uid://c2wechjw41pqj"]
 
 [ext_resource type="Script" path="res://scenes/spawner.gd" id="2_xs2nv"]
 [ext_resource type="PackedScene" uid="uid://cby6xk3x22laa" path="res://scenes/enemy_01.tscn" id="3_2fbkj"]
@@ -11,6 +11,12 @@
 [ext_resource type="Script" path="res://scenes/experience_label.gd" id="9_tggsa"]
 [ext_resource type="Script" path="res://scenes/level_label.gd" id="10_203yq"]
 [ext_resource type="Script" path="res://scenes/level_up_menu.gd" id="11_w5vlx"]
+[ext_resource type="Resource" uid="uid://dg2cq0wpo0phn" path="res://resources/fireball.tres" id="12_ryynk"]
+[ext_resource type="Resource" uid="uid://c5t0uxvlyuxib" path="res://resources/haste_up.tres" id="13_oakjs"]
+[ext_resource type="Resource" uid="uid://be4xbw1l1rmgw" path="res://resources/life_up.tres" id="14_geurc"]
+[ext_resource type="Resource" uid="uid://gikx6gppgxc1" path="res://resources/melee.tres" id="15_maoph"]
+[ext_resource type="Resource" uid="uid://kgtorghxd2ar" path="res://resources/nothing.tres" id="16_xrspw"]
+[ext_resource type="Resource" uid="uid://cnw8vfu5a6ly6" path="res://resources/speed_up.tres" id="17_itcgx"]
 
 [sub_resource type="Curve2D" id="Curve2D_7hp5g"]
 
@@ -64,6 +70,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("11_w5vlx")
+available_weapons = Array[Resource("res://scenes/weapon_data.gd")]([ExtResource("12_ryynk"), ExtResource("13_oakjs"), ExtResource("14_geurc"), ExtResource("15_maoph"), ExtResource("16_xrspw"), ExtResource("17_itcgx")])
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/LevelUpMenu"]
 layout_mode = 2

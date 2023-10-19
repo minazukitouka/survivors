@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://gikx6gppgxc1"]
+
+[ext_resource type="Script" path="res://scenes/weapon_data.gd" id="1_l3w0p"]
+[ext_resource type="PackedScene" uid="uid://kr6auw6copwu" path="res://scenes/melee_weapon.tscn" id="2_28slq"]
+
+[resource]
+script = ExtResource("1_l3w0p")
+name = "Melee"
+weapon_scene = ExtResource("2_28slq")
+descriptions = Array[String](["", "Melee damage +20%", "Melee area of effect +20%", "Melee haste +20%", "Melee attacks an addition time", "Melee critical chance +20%", "Melee damage increases by 1"])

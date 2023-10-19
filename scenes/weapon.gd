@@ -4,7 +4,7 @@ extends Node2D
 
 @export var bullet_scene: PackedScene
 
-var level = 1.0
+var level = 1
 
 
 func _ready() -> void:

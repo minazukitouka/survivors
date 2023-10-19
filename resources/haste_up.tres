@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3 uid="uid://c5t0uxvlyuxib"]
+
+[ext_resource type="Script" path="res://scenes/weapon_data.gd" id="1_qowkl"]
+
+[resource]
+script = ExtResource("1_qowkl")
+name = "Haste up"
+descriptions = Array[String](["Increases haste by 5%"])

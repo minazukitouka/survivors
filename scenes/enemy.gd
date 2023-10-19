@@ -9,6 +9,7 @@ const experience_scene = preload('res://scenes/experience.tscn')
 var target_hero: Node2D
 var velocity = Vector2.ZERO
 var move_speed = 30.0
+var level = 1: set = _set_level
 var life = 20
 
 
@@ -44,5 +45,10 @@ func take_damage(damage_amount: int):
 func handle_collision(area: Area2D):
 	if area.is_in_group('heroes'):
 		if damage_cooldown.is_stopped():
-			area.take_damage(1)
+			area.take_damage(level)
 			damage_cooldown.start()
+
+
+func _set_level(value: int):
+	level = value
+	life = value * 5 + 5

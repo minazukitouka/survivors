@@ -1,11 +1,6 @@
-extends Area2D
+extends 'res://scenes/bullet.gd'
 
 var hero
-var damage = 20
-
-
-func _ready() -> void:
-	area_entered.connect(deal_damage)
 
 
 func _physics_process(delta: float) -> void:
@@ -16,7 +11,3 @@ func _physics_process(delta: float) -> void:
 
 func set_level(level):
 	damage = 20 + level
-
-
-func deal_damage(area: Area2D):
-	area.take_damage(damage)

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3 uid="uid://cnw8vfu5a6ly6"]
+
+[ext_resource type="Script" path="res://scenes/weapon_data.gd" id="1_nmg4d"]
+
+[resource]
+script = ExtResource("1_nmg4d")
+name = "Speed up"
+descriptions = Array[String](["Increases move speed by 5%"])

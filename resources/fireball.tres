@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://dg2cq0wpo0phn"]
+
+[ext_resource type="Script" path="res://scenes/weapon_data.gd" id="1_77tvx"]
+[ext_resource type="PackedScene" uid="uid://b7qqhgev4rhkn" path="res://scenes/fireball_weapon.tscn" id="2_17eli"]
+
+[resource]
+script = ExtResource("1_77tvx")
+name = "Fireball"
+weapon_scene = ExtResource("2_17eli")
+descriptions = Array[String](["Fires a fireball to nearby enemy", "Fireball travels 20% faster", "Fireball fires 2 additional projectiles", "Fireball splits after hit", "Fireball increases damage by 1"])
